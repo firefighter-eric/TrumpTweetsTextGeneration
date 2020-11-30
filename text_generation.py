@@ -1,5 +1,5 @@
-import tensorflow as tf
 import os
+import tensorflow as tf
 import numpy as np
 
 from data_preparation import *
@@ -7,14 +7,12 @@ from model import *
 
 BATCH_SIZE = 64
 BUFFER_SIZE = 10000
-dataset, char2idx, idx2char, vocab = text2tf_data(filename='donald_tweets.txt',
-                                                  seq_length=100,
-                                                  buffer_size=BUFFER_SIZE,
-                                                  batch_size=BATCH_SIZE)
+dataset, char2idx, idx2char, vocab = word_text2tf_data(filename='donald_tweets.txt', seq_length=10,
+                                                       batch_size=BATCH_SIZE, buffer_size=BUFFER_SIZE)
 
 VOCAB_SIZE = len(vocab)
 EMBEDDING_DIM = 256
-RNN_UNIT = 1024
+RNN_UNIT = 128
 
 model = build_attention_model(
     vocab_size=VOCAB_SIZE,
@@ -42,7 +40,7 @@ model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 model.build(tf.TensorShape([1, None]))
 
 
-def generate_text(model, start_string, num_generate):
+def generate_text(model, start_string, num_generate, split_string):
     input_eval = [char2idx[s] for s in start_string]
     input_eval = tf.expand_dims(input_eval, 0)
 
@@ -63,7 +61,7 @@ def generate_text(model, start_string, num_generate):
         # along with the previous hidden state
         input_eval = tf.expand_dims([predicted_id], 0)
         text_generated.append(idx2char[predicted_id])
-    return start_string + ''.join(text_generated)
+    return start_string + split_string.join(text_generated)
 
 
-print(generate_text(model, u"@", 1000))
+print(generate_text(model, [u'@ABCPolitics:'], 1000, ' '))
