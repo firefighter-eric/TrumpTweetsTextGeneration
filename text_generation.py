@@ -16,7 +16,7 @@ VOCAB_SIZE = len(vocab)
 EMBEDDING_DIM = 256
 RNN_UNIT = 1024
 
-model = build_model(
+model = build_attention_model(
     vocab_size=VOCAB_SIZE,
     embedding_dim=EMBEDDING_DIM,
     rnn_units=RNN_UNIT,
@@ -37,7 +37,7 @@ EPOCHS = 10
 history = model.fit(dataset, epochs=EPOCHS, callbacks=[checkpoint_callback])
 tf.train.latest_checkpoint(checkpoint_dir)
 
-model = build_model(VOCAB_SIZE, EMBEDDING_DIM, RNN_UNIT, batch_size=1)
+model = build_attention_model(VOCAB_SIZE, EMBEDDING_DIM, RNN_UNIT, batch_size=1)
 model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 model.build(tf.TensorShape([1, None]))
 
