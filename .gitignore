@@ -1,0 +1,6 @@
+.idea/
+.old_version/
+__pycache__/
+
+# checkpoints
+*checkpoints/
