@@ -16,7 +16,7 @@ def load_file():
 def scores_char(k, index, generate_text, model, trump_tweets):
     initial_sentence = ' '.join(trump_tweets[index][:k])
     length = len(trump_tweets[index])
-    hyp = generate_text(model, initial_sentence, length, ' ')
+    hyp = generate_text(model, initial_sentence, length, '')
     ref = trump_tweets[index]
     ref = " ".join(ref)
     print("Generated sentence:", hyp)
