@@ -29,9 +29,9 @@ def scores(k, index, generate_text, model, trump_tweets):
     rouge = Rouge()
     r_scores = rouge.get_scores(hyp, ref)
     print(str(k) + " initial words from #" + str(index) + " sentences -- rouge scores:")
-    for k, v in r_scores[0].items():
-        print(str(k), v)
-    b_scores = sentence_bleu(ref, hyp)
+    for key, v in r_scores[0].items():
+        print(str(key), v)
+    b_scores = sentence_bleu(ref.split(), hyp.split())
     print()
     print("--------------------------------------------------------------------------")
     print()
