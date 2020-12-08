@@ -31,7 +31,7 @@ def scores(k, index, generate_text, model, trump_tweets):
     print(str(k) + " initial words from #" + str(index) + " sentences -- rouge scores:")
     for key, v in r_scores[0].items():
         print(str(key), v)
-    b_scores = sentence_bleu(ref.split(), hyp.split())
+    b_scores = sentence_bleu(ref.split(), hyp)
     print()
     print("--------------------------------------------------------------------------")
     print()
