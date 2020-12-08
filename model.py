@@ -10,7 +10,8 @@ def build_basic_model(vocab_size, embedding_dim, rnn_units, batch_size):
                             stateful=True,
                             recurrent_initializer='glorot_uniform'),
         tf.keras.layers.Dense(vocab_size)
-    ])
+    ],
+        name='BaseLineModel')
     return model
 
 
@@ -38,5 +39,5 @@ def build_attention_model(vocab_size, embedding_dim, rnn_units, batch_size):
     dense = tf.keras.layers.Dense(vocab_size)
     output_layer = dense(concentrate_layer)
 
-    model = tf.keras.models.Model(inputs=[input_layer], outputs=[output_layer])
+    model = tf.keras.models.Model(inputs=[input_layer], outputs=[output_layer], name='ModelWithAttention')
     return model

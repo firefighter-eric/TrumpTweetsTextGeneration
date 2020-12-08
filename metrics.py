@@ -13,6 +13,33 @@ def load_file():
 
     return trump_tweets
 
+def scores_char(k, index, generate_text, model, trump_tweets):
+    initial_sentence = ' '.join(trump_tweets[index][:k])
+    length = len(trump_tweets[index])
+    hyp = generate_text(model, initial_sentence, length, ' ')
+    ref = trump_tweets[index]
+    ref = " ".join(ref)
+    print("Generated sentence:", hyp)
+    print()
+    print("Reference sentence:", ref)
+    print()
+    print("--------------------------------------------------------------------------")
+    print()
+    rouge = Rouge()
+    r_scores = rouge.get_scores(hyp, ref)
+    print(str(k) + " initial words from #" + str(index) + " sentences -- rouge scores:")
+    for key, v in r_scores[0].items():
+        print(str(key), v)
+    b_scores = sentence_bleu(ref.split(), hyp)
+    print()
+    print("--------------------------------------------------------------------------")
+    print()
+    print(str(k) + " initial words from #" + str(index) + " sentences -- BLEU scores:")
+    print(b_scores)
+    print()
+    print("##########################################################################")
+    print()
+
 
 def scores(k, index, generate_text, model, trump_tweets):
     initial_sentence = trump_tweets[index][:k]
