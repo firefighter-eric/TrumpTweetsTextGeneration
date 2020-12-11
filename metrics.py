@@ -80,18 +80,18 @@ def scores(k, index, generate_text, model, trump_tweets):
 
 if __name__ == "__main__":
     trump_tweets = []
-    # f = open(f'donald_tweets.txt', 'rb').read().decode(encoding='utf-8')
-    # f = f.split("\n")
-    # for line in f:
-    #     l = line.split()
-    #     if len(l) >= 5:
-    #         trump_tweets.append(l)
-    #     else:
-    #         trump_tweets.append([])
-    #
+    f = open(f'donald_tweets.txt', 'rb').read().decode(encoding='utf-8')
+    f = f.split("\n")
+    for line in f:
+        l = line.split()
+        if len(l) >= 5:
+            trump_tweets.append(l)
+        else:
+            trump_tweets.append([])
+    
     # initial_sentence = trump_tweets[10][:2]
     # from metrics import *
-    #
+    
     # trump_tweets = load_file()
     # for i in (2, 4, 6, 8, 10):
     #     scores(i, 10, generate_text, model, trump_tweets)

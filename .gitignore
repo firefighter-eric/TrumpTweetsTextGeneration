@@ -1,6 +1,7 @@
 .idea/
 .old_version/
 __pycache__/
+.vscode
 
 # checkpoints
 *checkpoints/
