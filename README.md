@@ -2,7 +2,7 @@
 This project implements two models, baseline model and attention-based mode
 
 ## Environment
-python          3.7 <\br>
+python          3.7<br>
 numpy           1.18.5
 nltk            3.5
 rouge           1.0.0
